@@ -16,8 +16,9 @@ export class ResultsComponent implements OnInit {
   detailsLoaded = false;
   spinner = false;
   selectedMovie = {'title': ''};
-  movieDetails = {"imdb_id": '', 'Poster': ''};
-
+  movieDetails = {'director': '', 'credits': {'crew': []}};
+  directors: any[];
+  
   constructor(private fetchService: FetchService) { }
 
   ngOnInit() {}
@@ -34,16 +35,26 @@ export class ResultsComponent implements OnInit {
     this.selectedMovie = movie;
     this.spinner = true;
     this.detailsLoaded = false;
+    this.directors = ["sam"];
     this.fetchService.getDetails(movie.id)
     .subscribe(res => this.movieDetails = res,
       null,
-      () => this.fetchService.getimdb(this.movieDetails.imdb_id)
-      .subscribe(res => this.movieDetails = res, 
-        null, 
-        () => { 
-          this.spinner = false; 
-          this.detailsLoaded = true;
-        }));
+      // () => this.fetchService.getimdb(this.movieDetails.imdb_id)
+      // .subscribe(res => this.movieDetails = res, 
+      //   null, 
+      () => {
+        
+
+        this.movieDetails.credits.crew.forEach(function(entry) {
+          if(entry.job === 'Director') {
+            this.movieDetails.director += ", ";
+            this.movieDetails.director += entry.name;
+          }
+        }.bind(this));
+        
+        this.spinner = false; 
+        this.detailsLoaded = true;
+      });
     }
 
     getWidth() {

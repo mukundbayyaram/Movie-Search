@@ -21,19 +21,16 @@
 
         <div class="data">
             <div class="media-body">
-                <h2 class="media-heading">{{movieDetails.Title}}{{movieDetails.title}}</h2>
-                <p>{{movieDetails.Language}}  |  {{movieDetails.Genre}}</p>
-                <p><strong>Release Date:</strong> {{movieDetails.Released}}{{movieDetails.release_date}}</p>
-                <p><strong>IMDB:</strong> {{movieDetails.imdbRating}}/10 | <strong>Metacritic:</strong> {{movieDetails.Metascore}}% | <strong>Runtime:</strong> {{movieDetails.Runtime}}</p>
+                <h2 class="media-heading">{{movieDetails.title}}</h2>
+                <h4>{{movieDetails.tagline}}</h4>
+                <p><strong>Release Date:</strong>{{movieDetails.release_date}}</p>
+                <p><strong>Runtime:</strong> {{movieDetails.runtime}} min</p>
                 <p><strong>Plot:</strong> {{movieDetails.Plot}}{{movieDetails.overview}}</p>
-                <p><strong>Director:</strong> {{movieDetails.Director}}</p>
-                <p><strong>Writer:</strong> {{movieDetails.Writer}}</p>
-                <p><strong>Actor:</strong> {{movieDetails.Actors}}</p>
             </div>
 
             <div class="poster media-right">
                 <a href="#">
-                <img class="media-object" src="{{movieDetails.Poster}}">
+                <img class="media-object" src="https://image.tmdb.org/t/p/w342//{{movieDetails.poster_path}}">
                 </a>
             </div>
         </div>
