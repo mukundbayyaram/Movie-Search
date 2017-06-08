@@ -1,0 +1,41 @@
+<div class="row">
+
+    <div class="col-md-5 col-sm-12">
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let movie of moviesList"
+            (click)=select(movie) [class.active]="selectedMovie == movie">
+                {{movie.title}}<small style="float: right">{{movie.release_date}}</small>
+            </li>
+        </ul>
+    </div>
+
+    <div [hidden]="!spinner">
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+
+    <div [hidden]="!detailsLoaded" 
+        class="media col-md-7 col-sm-12 overlay" [hidden]="!clicked">
+
+        <div (click)="clicked = !clicked" class="close">&times;</div>
+
+        <div class="data">
+            <div class="media-body">
+                <h2 class="media-heading">{{movieDetails.Title}}{{movieDetails.title}}</h2>
+                <p>{{movieDetails.Language}}  |  {{movieDetails.Genre}}</p>
+                <p><strong>Release Date:</strong> {{movieDetails.Released}}{{movieDetails.release_date}}</p>
+                <p><strong>IMDB:</strong> {{movieDetails.imdbRating}}/10 | <strong>Metacritic:</strong> {{movieDetails.Metascore}}% | <strong>Runtime:</strong> {{movieDetails.Runtime}}</p>
+                <p><strong>Plot:</strong> {{movieDetails.Plot}}{{movieDetails.overview}}</p>
+                <p><strong>Director:</strong> {{movieDetails.Director}}</p>
+                <p><strong>Writer:</strong> {{movieDetails.Writer}}</p>
+                <p><strong>Actor:</strong> {{movieDetails.Actors}}</p>
+            </div>
+
+            <div class="poster media-right">
+                <a href="#">
+                <img class="media-object" src="{{movieDetails.Poster}}">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
